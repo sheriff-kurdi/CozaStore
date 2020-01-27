@@ -1,0 +1,139 @@
+﻿@model TShirtCompany.Models.OrderRequestVM
+
+@{
+    ViewData["Title"] = "RquestOrder";
+
+}
+
+<h3>RquestOrder</h3>
+<p> Scroll left or right to buy</p>
+
+<hr />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Model.product.Name</td>
+            <td>@Model.product.Price</td>
+            <td> <img style="width:200px; height:200px;" src="~/Uploads/@Model.product.Image" alt="IMG-PRODUCT" asp-append-version="true"></td>
+            <td></td>
+            <td>
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <form asp-action="RquestOrder">
+
+                            <input type="hidden" asp-for="product.Id" />
+                            <input type="hidden" asp-for="product.Name" />
+                            <input type="hidden" asp-for="product.Price" />
+                            <input type="hidden" asp-for="product.Image" />
+
+
+                            <div class="form-group">
+                                <label asp-for="CustomerName" class="control-label"></label>
+                                <input asp-for="CustomerName" class="form-control" />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Phone" class="control-label"></label>
+                                <input asp-for="Phone" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+
+
+
+                            <input type="hidden" asp-for="product" />
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="ItemNumbers" class="control-label"></label>
+                                <input asp-for="ItemNumbers" class="form-control" />
+                                <span asp-validation-for="ItemNumbers" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="product.Size" class="control-label"></label>
+
+
+                                @* asp-items="Html.GetEnumSelectList<TShirtCompany.Models.Size>()" *@
+
+                            <select asp-for="product.Size" class="custom-select mr-2">
+
+
+                                @if (Model.product.Type == TShirtCompany.Models.Type.Clothes)
+                                {
+                                    <option value="@TShirtCompany.Models.Size.Small"> @TShirtCompany.Models.Size.Small </option>
+                                    <option value="@TShirtCompany.Models.Size.Mediam"> @TShirtCompany.Models.Size.Mediam </option>
+                                    <option value="@TShirtCompany.Models.Size.Large">@TShirtCompany.Models.Size.Large</option>
+                                    <option value="@TShirtCompany.Models.Size.XL"> @TShirtCompany.Models.Size.XL</option>
+                                    <option value="@TShirtCompany.Models.Size.XXl"> @TShirtCompany.Models.Size.XXl</option>
+                                    <option value="@TShirtCompany.Models.Size.xxxL"> @TShirtCompany.Models.Size.xxxL </option>
+                                }
+                        
+
+                                @if (Model.product.Type == TShirtCompany.Models.Type.Shoes)
+                                {
+                                    <option value="@TShirtCompany.Models.Size.forty"> @TShirtCompany.Models.Size.forty</option>
+                                    <option value="@TShirtCompany.Models.Size.fortyOne">@TShirtCompany.Models.Size.fortyOne </option>
+                                    <option value="@TShirtCompany.Models.Size.fortyTwo">@TShirtCompany.Models.Size.fortyTwo </option>
+                                    <option value="@TShirtCompany.Models.Size.fortyThree"> @TShirtCompany.Models.Size.fortyThree </option>
+                                    <option value="@TShirtCompany.Models.Size.fortyFoure"> @TShirtCompany.Models.Size.fortyFoure </option>
+                                    <option value="@TShirtCompany.Models.Size.fortyFive"> @TShirtCompany.Models.Size.fortyFive </option>
+                                }else
+                                {
+                                    <option value="@TShirtCompany.Models.Size.Only_One_Size"> @TShirtCompany.Models.Size.Only_One_Size </option>
+                                }
+
+
+
+
+
+
+                            </select>
+
+
+
+
+                                <span asp-validation-for="product.Size" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="submit" value="Buy" class="btn btn-primary" />
+                            </div>
+                        </form>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-controller="home" asp-action="Index">Back to List</a>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+<div>
+    <a href='javascript:history.go(-1)'>Back to List</a>
+</div>

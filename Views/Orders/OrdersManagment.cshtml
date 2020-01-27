@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "OrdersManagment";
+}
+
+<h1>OrdersManagment</h1>
+
+
+@model IEnumerable<Order>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+
+            <th scope="col">Item Name</th>
+            <th scope="col">Item Numbers</th>
+            <th scope="col">Item Size</th>
+            <th scope="col">Totall Cost</th>
+            <th scope="col"> Customer Name </th>
+            <th scope="col"> Customer Phone </th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>@item.ItemName</td>
+            <td>@item.ItemNumbers</td>
+            <td>@item.Size</td>
+            <td>@item.TotallCost</td>
+            <td>@item.CustomerName</td>
+            <td>@item.Phone</td>
+
+            <td>
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="orders" asp-route-Id="@item.Id">Delete</a>
+                <a class="btn btn-sm btn-primary" asp-action="Delete" asp-controller="orders" asp-route-Id="@item.Id">Sold</a>
+
+            </td>
+           
+
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+<div>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MobileAdmin"> Back To Admin</a>
+
+</div>
